@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View Camelback Epoxy Co.'s project gallery — garage floors, metallic epoxy, commercial flooring, and concrete polishing in Scottsdale, Paradise Valley, and the Greater Phoenix area.">
+  <meta name="keywords" content="epoxy floor gallery Scottsdale, garage epoxy before after Arizona, metallic epoxy photos Scottsdale, commercial epoxy floor photos Arizona">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Project Gallery | Camelback Epoxy Co. Scottsdale AZ">
+  <meta property="og:url" content="https://camelbackepoxy.com/gallery.html">
+  <title>Epoxy Floor Gallery | Camelback Epoxy Co. Scottsdale AZ</title>
+  <link rel="canonical" href="https://camelbackepoxy.com/gallery.html">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .filter-bar { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:40px; }
+    .filter-btn { font-family:var(--font-condensed); font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:10px 24px; background:var(--iron); border:1px solid rgba(255,255,255,0.08); color:rgba(245,240,232,0.6); border-radius:100px; cursor:pointer; transition:all 0.3s; }
+    .filter-btn:hover, .filter-btn.active { background:rgba(200,169,110,0.1); border-color:var(--sand); color:var(--sand); }
+    .gallery-masonry { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+    .gallery-card { position:relative; overflow:hidden; border-radius:4px; cursor:pointer; }
+    .gallery-card.tall { grid-row: span 2; }
+    .gallery-card__floor { width:100%; aspect-ratio:1; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; transition:transform 0.5s ease; }
+    .gallery-card.tall .gallery-card__floor { aspect-ratio:1/2; }
+    .gallery-card:hover .gallery-card__floor { transform:scale(1.04); }
+    .gallery-card__info { position:absolute; bottom:0; left:0; right:0; padding:20px; background:linear-gradient(to top,rgba(0,0,0,0.9),transparent); transform:translateY(8px); opacity:0; transition:all 0.3s; }
+    .gallery-card:hover .gallery-card__info { opacity:1; transform:translateY(0); }
+    .gallery-card__title { font-family:var(--font-condensed); font-size:15px; font-weight:700; color:var(--white); }
+    .gallery-card__tag { font-size:12px; color:var(--sand); font-family:var(--font-condensed); letter-spacing:1px; margin-top:2px; }
+    @media(max-width:768px){.gallery-masonry{grid-template-columns:repeat(2,1fr);}.gallery-card.tall{grid-row:span 1;}.gallery-card.tall .gallery-card__floor{aspect-ratio:1;}}
+  </style>
+</head>
+<body>
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo">CAMELBACK <span>EPOXY</span> CO.</a>
+    <ul class="nav__links" role="list"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="about.html">About</a></li><li><a href="service-areas.html">Service Areas</a></li><li><a href="faq.html">FAQ</a></li></ul>
+    <a href="contact.html" class="btn btn--primary nav__cta">Free Estimate</a>
+    <button class="nav__hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<nav class="nav__mobile" aria-label="Mobile navigation">
+  <a href="index.html">Home</a><a href="services.html">Services</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="service-areas.html">Areas</a><a href="faq.html">FAQ</a><a href="contact.html" class="btn btn--primary">Free Estimate</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero__inner">
+    <nav class="breadcrumb mb-16" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb__sep" aria-hidden="true">›</span><span>Gallery</span></nav>
+    <p class="label">Our Work</p>
+    <h1 class="display-lg mt-8">Project <span class="text-sand">Gallery</span></h1>
+    <p class="body-lg mt-16" style="color:rgba(245,240,232,0.65);max-width:560px;">Every floor tells a story. Browse our completed projects across Scottsdale, Paradise Valley, and the Greater Phoenix area.</p>
+  </div>
+</div>
+
+<section class="section" aria-labelledby="gallery-heading">
+  <div class="container">
+    <h2 class="visually-hidden" id="gallery-heading">Project Gallery</h2>
+    <div class="filter-bar" role="group" aria-label="Filter gallery by type">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="residential">Residential</button>
+      <button class="filter-btn" data-filter="metallic">Metallic Epoxy</button>
+      <button class="filter-btn" data-filter="commercial">Commercial</button>
+      <button class="filter-btn" data-filter="polishing">Concrete Polishing</button>
+    </div>
+
+    <div class="gallery-masonry">
+      <div class="gallery-card tall" data-type="metallic" role="img" aria-label="Blue pearl metallic epoxy showroom floor - Paradise Valley">
+        <div class="gallery-card__floor" style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 30%,#0f3460 60%,#533483 100%);height:100%;"></div>
+        <div class="gallery-card__info"><div class="gallery-card__title">Blue Pearl Metallic</div><div class="gallery-card__tag">Paradise Valley · Residential</div></div>
+      </div>
+      <div class="gallery-card" data-type="residential" role="img" aria-label="Desert sand flake garage floor - North Scottsdale">
+        <div class="gallery-card__floor" style="background:linear-gradient(135deg,#d4a574 0%,#c8956c 50%,#a0785a 100%);"></div>
+        <div class="gallery-card__info"><div class="gallery-card__title">Desert Sand Flake</div><div class="gallery-card__tag">North Scottsdale · 2-Car Garage</div></div>
+      </div>
+      <div class="gallery-card" data-type="residential" role="img" aria-label="Charcoal full flake garage floor - Tempe">
+        <div class="gallery-card__floor" style="background:linear-gradient(135deg,#2a2a3a 0%,#1a1a2a 50%,#0a0a1a 100%);"></div>
+        <div class="gallery-card__info"><div class="gallery-card__title">Charcoal Full Flake</div><div class="gallery-card__tag">Tempe · 3-Car Garage</div></div>
+      </div>
+      <div class="gallery-card" data-type="commercial" role="img" aria-label="Industrial grey warehouse epoxy - Phoenix">
+        <div class="gallery-card__floor" style="background:linear-gradient(135deg,#2a2a2a 0%,#1a1a1a 30%,#3d3020 60%,#2a1f0e 100%);"></div>
+        <div class="gallery-card__info"><div class="gallery-card__title">Industrial Warehouse</div><div class="gallery-card__tag">Phoenix · 6,000 sq ft</div></div>
+      </div>
+      <div class="gallery-card tall" data-type="metallic" role="img" aria-label="Copper swirl metallic epoxy garage - Scottsdale">
+        <div class="gallery-card__floor" style="background:linear-gradient(135deg,#3a2a1a 0%,#6a4a2a 30%,#8b6347 60%,#a07850 100%);height:100%;"></div>
+        <div class="gallery-card__info"><div class="gallery-card__title">Copper Swirl Metallic</div><div class="gallery-card__tag">Scottsdale · DC Ranch</div></div>
+      </div>
+      <div class="gallery-card" data-type="polishing" role="img" aria-label="Polished concrete retail floor - Old Town Scottsdale">
+        <div class="gallery-card__floor" style="background:linear-gradient(135deg,#3a3a3a 0%,#2a2a2a 30%,#4a4a4a 60%,#3a3a3a 100%);"></div>
+        <div class="gallery-card__info"><div class="gallery-card__title">Polished Concrete — High Gloss</div><div class="gallery-card__tag">Old Town Scottsdale · Retail</div></div>
+      </div>
+      <div class="gallery-card" data-type="residential" role="img" aria-label="White quartz garage floor - Gilbert">
+        <div class="gallery-card__floor" style="background:linear-gradient(135deg,#e8e0d0 0%,#d8d0c0 50%,#c8c0b0 100%);"></div>
+        <div class="gallery-card__info"><div class="gallery-card__title">White Quartz System</div><div class="gallery-card__tag">Gilbert · New Construction</div></div>
+      </div>
+      <div class="gallery-card" data-type="commercial" role="img" aria-label="Green anti-slip warehouse floor - Chandler">
+        <div class="gallery-card__floor" style="background:linear-gradient(135deg,#1a2a1a 0%,#2d4a2d 50%,#4a6a4a 100%);"></div>
+        <div class="gallery-card__info"><div class="gallery-card__title">Industrial Anti-Slip</div><div class="gallery-card__tag">Chandler · Distribution Center</div></div>
+      </div>
+      <div class="gallery-card" data-type="metallic" role="img" aria-label="Midnight smoke metallic epoxy basement - Mesa">
+        <div class="gallery-card__floor" style="background:linear-gradient(135deg,#0d0d1a 0%,#1a1a2e 30%,#2a2a3e 60%,#1a1a2e 100%);"></div>
+        <div class="gallery-card__info"><div class="gallery-card__title">Midnight Smoke Metallic</div><div class="gallery-card__tag">Mesa · Basement Conversion</div></div>
+      </div>
+    </div>
+
+    <div class="mt-64 reveal" style="background:var(--charcoal);border-radius:4px;padding:48px;text-align:center;border:1px solid rgba(200,169,110,0.15);">
+      <p class="label mb-8">Add Your Project Here</p>
+      <h3 class="display-sm mb-16">Ready to See Your <span class="text-sand">Floor</span> in Our Gallery?</h3>
+      <p class="body-lg mb-32" style="color:rgba(245,240,232,0.65);">Request a free estimate and we'll show you physical sample boards so you can choose your perfect finish.</p>
+      <div class="btn-group" style="justify-content:center;">
+        <a href="contact.html" class="btn btn--primary">Get Free Estimate</a>
+        <a href="services.html" class="btn btn--outline-sand">Explore Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" role="contentinfo">
+  <div class="footer__main">
+    <div class="footer__brand"><a href="index.html" class="nav__logo">CAMELBACK <span>EPOXY</span> CO.</a><p>Scottsdale's premier epoxy flooring company. WKG LLC.</p></div>
+    <div><h4 class="footer__heading">Services</h4><ul class="footer__links" role="list"><li><a href="services.html#residential">Garage Floors</a></li><li><a href="services.html#metallic">Metallic Epoxy</a></li><li><a href="services.html#commercial">Commercial</a></li><li><a href="services.html#polishing">Polishing</a></li></ul></div>
+    <div><h4 class="footer__heading">Company</h4><ul class="footer__links" role="list"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="faq.html">FAQ</a></li><li><a href="sitemap.html">Sitemap</a></li></ul></div>
+    <div><h4 class="footer__heading">Contact</h4><div class="footer__contact-item"><a href="tel:4805550100">(480) 555-0100</a></div><div class="footer__contact-item"><a href="mailto:hello@camelbackepoxy.com">hello@camelbackepoxy.com</a></div></div>
+  </div>
+  <div class="footer__bottom"><p class="footer__copy">© 2026 Camelback Epoxy Co. · WKG LLC</p><div class="footer__legal"><a href="privacy.html">Privacy</a><a href="sitemap.html">Sitemap</a></div></div>
+</footer>
+<div class="sticky-cta"><a href="tel:4805550100" class="sticky-cta__phone" aria-label="Call us"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"/></svg>(480) 555-0100</a></div>
+<script src="js/main.js"></script>
+<script>
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.gallery-card').forEach(card => {
+        card.style.display = (filter === 'all' || card.dataset.type === filter) ? '' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>
