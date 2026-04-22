@@ -570,10 +570,10 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform 0.35s ease;
 }
 .service-card:hover {
-  border-color: rgba(200,169,110,0.40);
+    border-color: var(--sand);
   transform: translateY(-6px);
-  box-shadow: 0 20px 56px rgba(0,0,0,0.30);
-  background: rgba(255,255,255,0.11);
+  box-shadow: 0 20px 48px rgba(15,32,64,0.15);
+  background: #FFFFFF;
 }
 .service-card:hover .service-card__title {   color: var(--sand); }
 .service-card__icon {
