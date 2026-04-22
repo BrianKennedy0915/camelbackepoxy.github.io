@@ -1,26 +1,24 @@
 /* ============================================================
-   CAMELBACK EPOXY CO. — Main JavaScript
+   CAMELBACK EPOXY CO. — main.js
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ── Sticky Nav ──────────────────────────────────────────────
+  // ── 1. Sticky Nav ─────────────────────────────────────────
   const nav = document.querySelector('.nav');
-  const handleScroll = () => {
-    nav?.classList.toggle('scrolled', window.scrollY > 80);
-  };
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
+  const onScroll = () => nav?.classList.toggle('scrolled', window.scrollY > 80);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
-  // ── Mobile Nav Toggle ────────────────────────────────────────
+  // ── 2. Mobile Hamburger ───────────────────────────────────
   const hamburger = document.querySelector('.nav__hamburger');
   const mobileNav = document.querySelector('.nav__mobile');
 
   hamburger?.addEventListener('click', () => {
-    const isOpen = hamburger.classList.toggle('open');
-    mobileNav?.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+    const open = hamburger.classList.toggle('open');
+    mobileNav?.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
   });
 
   document.querySelectorAll('.nav__mobile a').forEach(link => {
@@ -32,68 +30,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ── Active Nav Link ──────────────────────────────────────────
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav__links a, .nav__mobile a').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-      link.classList.add('active');
-    }
+  // ── Active nav link ────────────────────────────────────────
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav__links a, .nav__mobile a').forEach(a => {
+    if (a.getAttribute('href') === page || (page === '' && a.getAttribute('href') === 'index.html'))
+      a.classList.add('active');
   });
 
-  // ── Scroll Reveal ────────────────────────────────────────────
-  const revealObserver = new IntersectionObserver(
-    entries => entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
-    }),
-    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-  );
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  // ── 3. Scroll Reveal ──────────────────────────────────────
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  // ── Counter Animation ────────────────────────────────────────
-  const animateCounter = el => {
-    const target   = parseInt(el.dataset.target, 10);
-    const suffix   = el.dataset.suffix || '';
-    const prefix   = el.dataset.prefix || '';
-    const duration = 2000;
-    const start    = performance.now();
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    const tick = now => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased    = 1 - Math.pow(1 - progress, 3);
-      el.textContent = prefix + Math.floor(eased * target).toLocaleString() + suffix;
-      if (progress < 1) requestAnimationFrame(tick);
+  // ── 5. Counter Animation ──────────────────────────────────
+  const animateCount = el => {
+    const target = parseInt(el.dataset.target, 10);
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.dataset.prefix || '';
+    const start  = performance.now();
+    const tick   = now => {
+      const p = Math.min((now - start) / 2000, 1);
+      const e = 1 - Math.pow(1 - p, 3);
+      el.textContent = prefix + Math.floor(e * target).toLocaleString() + suffix;
+      if (p < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
   };
 
-  const counterObserver = new IntersectionObserver(
-    entries => entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target);
-        counterObserver.unobserve(entry.target);
-      }
-    }),
-    { threshold: 0.5 }
-  );
-  document.querySelectorAll('.stat-item__number[data-target]')
-    .forEach(el => counterObserver.observe(el));
+  const countObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { animateCount(e.target); countObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.5 });
 
-  // ── FAQ Accordion ────────────────────────────────────────────
+  document.querySelectorAll('.stat-item__number[data-target]').forEach(el => countObs.observe(el));
+
+  // ── 4. FAQ Accordion ──────────────────────────────────────
   document.querySelectorAll('.faq-question').forEach(btn => {
     btn.addEventListener('click', () => {
       const isOpen = btn.classList.contains('open');
-
-      // Close all
-      document.querySelectorAll('.faq-question.open').forEach(open => {
-        open.classList.remove('open');
-        open.nextElementSibling?.classList.remove('open');
+      document.querySelectorAll('.faq-question.open').forEach(b => {
+        b.classList.remove('open');
+        b.nextElementSibling?.classList.remove('open');
       });
-
-      // Open clicked (unless it was already open)
       if (!isOpen) {
         btn.classList.add('open');
         btn.nextElementSibling?.classList.add('open');
@@ -101,8 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ── Gallery Filter (gallery.html) ───────────────────────────
-  const filterBtns = document.querySelectorAll('.filter-btn');
+  // ── Gallery Filter (gallery.html) ─────────────────────────
+  const filterBtns  = document.querySelectorAll('.filter-btn');
   const galleryCards = document.querySelectorAll('.gallery-card');
 
   if (filterBtns.length) {
@@ -110,30 +93,28 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
-        const filter = btn.dataset.filter;
+        const f = btn.dataset.filter;
         galleryCards.forEach(card => {
-          const show = filter === 'all' || card.dataset.category === filter;
-          card.style.opacity    = '0';
-          card.style.transition = 'opacity 0.3s ease';
+          const show = f === 'all' || card.dataset.category === f;
+          card.style.transition = 'opacity 0.3s';
+          card.style.opacity = '0';
           setTimeout(() => {
-            card.style.display  = show ? '' : 'none';
+            card.style.display = show ? '' : 'none';
             if (show) requestAnimationFrame(() => { card.style.opacity = '1'; });
-          }, 150);
+          }, 200);
         });
       });
     });
   }
 
-  // ── Lead Form Handling ───────────────────────────────────────
+  // ── Lead Form ─────────────────────────────────────────────
   document.querySelectorAll('.lead-form form').forEach(form => {
     form.addEventListener('submit', e => {
       e.preventDefault();
-      const btn = form.querySelector('[type="submit"]');
+      const btn  = form.querySelector('[type="submit"]');
       const orig = btn.textContent;
       btn.textContent = 'Sending…';
       btn.disabled = true;
-
       setTimeout(() => {
         btn.textContent = '✓ Request Sent!';
         btn.style.background = '#3a7d44';
@@ -147,76 +128,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ── Phone Link Tracking ──────────────────────────────────────
-  document.querySelectorAll('a[href^="tel:"]').forEach(link => {
-    link.addEventListener('click', () => {
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'phone_call_click', {
-          event_category: 'lead',
-          event_label: 'phone_cta'
-        });
-      }
+  // ── Phone tracking ────────────────────────────────────────
+  document.querySelectorAll('a[href^="tel:"]').forEach(a => {
+    a.addEventListener('click', () => {
+      if (typeof gtag !== 'undefined')
+        gtag('event', 'phone_call_click', { event_category: 'lead' });
     });
   });
 
-  // ── Smooth Scroll ────────────────────────────────────────────
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', e => {
-      const target = document.querySelector(anchor.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+  // ── Smooth scroll ─────────────────────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
 
-  // ── Gallery Lightbox ─────────────────────────────────────────
-  const galleryItems = document.querySelectorAll('.gallery-item');
-  if (galleryItems.length) {
-    const overlay = document.createElement('div');
-    overlay.style.cssText = [
-      'display:none',
-      'position:fixed',
-      'inset:0',
-      'background:rgba(13,27,42,0.96)',
-      'z-index:9999',
-      'align-items:center',
-      'justify-content:center',
-      'cursor:pointer',
-      'padding:24px'
-    ].join(';');
-
-    overlay.innerHTML = `
-      <div style="position:relative;max-width:900px;width:90vw;">
-        <div id="lb-content"
-          style="width:100%;height:60vh;border-radius:10px;display:flex;
-                 align-items:center;justify-content:center;
-                 font-family:'Montserrat',sans-serif;font-size:22px;
-                 font-weight:800;letter-spacing:3px;text-transform:uppercase;
-                 color:rgba(245,240,232,0.5);border:1px solid rgba(200,169,110,0.2);">
-        </div>
-        <button aria-label="Close"
-          style="position:absolute;top:-44px;right:0;background:none;border:none;
-                 color:white;font-size:28px;cursor:pointer;line-height:1;
-                 font-family:sans-serif;">✕</button>
+  // ── Gallery Lightbox ──────────────────────────────────────
+  const items = document.querySelectorAll('.gallery-item');
+  if (items.length) {
+    const ov = document.createElement('div');
+    ov.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(15,32,64,0.96);z-index:9999;align-items:center;justify-content:center;cursor:pointer;padding:24px';
+    ov.innerHTML = `
+      <div style="position:relative;max-width:900px;width:90vw">
+        <div id="lb-content" style="width:100%;height:60vh;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:20px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,0.4);border:1px solid rgba(200,169,110,0.25)"></div>
+        <button aria-label="Close" style="position:absolute;top:-44px;right:0;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;line-height:1">✕</button>
       </div>`;
-    document.body.appendChild(overlay);
-
-    galleryItems.forEach(item => {
+    document.body.appendChild(ov);
+    items.forEach(item => {
       item.addEventListener('click', () => {
-        const label = item.querySelector('.gallery-item__label')?.textContent || '';
-        const lb = document.getElementById('lb-content');
-        lb.textContent = label;
-        lb.style.background = getComputedStyle(item).background;
-        overlay.style.display = 'flex';
+        document.getElementById('lb-content').textContent = item.querySelector('.gallery-item__label')?.textContent || '';
+        document.getElementById('lb-content').style.background = getComputedStyle(item).background;
+        ov.style.display = 'flex';
         document.body.style.overflow = 'hidden';
       });
     });
-
-    overlay.addEventListener('click', () => {
-      overlay.style.display = 'none';
-      document.body.style.overflow = '';
-    });
+    ov.addEventListener('click', () => { ov.style.display = 'none'; document.body.style.overflow = ''; });
   }
 
 });
