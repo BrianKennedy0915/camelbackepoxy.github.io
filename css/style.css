@@ -1139,7 +1139,7 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   bottom: -1px; left: 0; right: 0;
   height: 60px;
-  background: linear-gradient(to bottom, transparent, var(--white));
+  background: linear-gradient(to bottom, transparent, var(--navy));
 }
 .page-hero__inner { max-width: var(--max-w); margin: 0 auto; }
 .page-hero__breadcrumb {
