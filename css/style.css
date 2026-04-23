@@ -570,7 +570,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform 0.35s ease;
 }
 .service-card:hover {
-    border-color: var(--sand);
+  border-color: var(--sand);
   transform: translateY(-6px);
   box-shadow: 0 20px 48px rgba(15,32,64,0.15);
   background: #FFFFFF;
@@ -597,7 +597,6 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.3px;
   margin-bottom: 12px;
   color: var(--navy);
-  transition: color 0.3s ease;
 }
 .service-card__body {
   font-size: 15px;
