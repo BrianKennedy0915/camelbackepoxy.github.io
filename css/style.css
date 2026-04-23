@@ -575,7 +575,6 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 20px 48px rgba(15,32,64,0.15);
   background: #FFFFFF;
 }
-.service-card:hover .service-card__title {   color: var(--sand); }
 .service-card__icon {
   width: 56px;
   height: 56px;
